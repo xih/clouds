@@ -7,6 +7,10 @@ import { cn } from "@/utils";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+export const dynamic = "force-dynamic"; // disable static rendering
+export const revalidate = 0; // no ISR
+export const fetchCache = "force-no-store"; // no data caching across renders
+
 export const metadata: Metadata = {
   title: "Hume AI - EVI - Next.js Starter",
   description: "A Next.js starter using Hume AI's Empathic Voice Interface",

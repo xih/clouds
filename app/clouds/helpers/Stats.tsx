@@ -7,11 +7,11 @@ import { useControls } from "leva";
 export const Stats: FC = () => {
   const { show } = useControls("stats", { show: false }, { collapsed: true });
 
-  const statsRef = useRef<StatsImpl>(undefined);
+  const statsRef = useRef<StatsImpl | null>(null);
   const renderer = useThree(({ gl }) => gl);
   useEffect(() => {
-    if (!show) {
-      statsRef.current = undefined;
+    if (!show || typeof document === 'undefined') {
+      statsRef.current = null;
       return;
     }
     const stats = new StatsImpl({
