@@ -1,20 +1,21 @@
-import { getHumeAccessToken } from "@/utils/getHumeAccessToken";
-import dynamic from "next/dynamic";
+"use client";
 
-const Chat = dynamic(() => import("@/components/Chat"), {
-  ssr: false,
-});
+import { Sky } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import React from "react";
+import { Stats } from "./clouds/helpers/Stats";
+import CloudScene from "./clouds/CloudScene";
 
 export default async function Page() {
-  const accessToken = await getHumeAccessToken();
-
-  if (!accessToken) {
-    throw new Error('Unable to get access token');
-  }
-
   return (
-    <div className={"grow flex flex-col"}>
-      <Chat accessToken={accessToken} />
+    <div>
+      <div className="h-screen w-screen">
+        <Canvas gl={{ depth: false }} camera={{ near: 100, far: 4e5 }}>
+          <Stats />
+          <Sky />
+          <CloudScene />
+        </Canvas>
+      </div>
     </div>
   );
 }

@@ -26,9 +26,8 @@ import { useLocalDateControls } from "./helpers/useLocationDateControls";
 import { useLocationControls } from "./helpers/useLocationControl";
 import { useToneMappingControls } from "./helpers/useToneMappingControls";
 import { useCloudsControls } from "./helpers/useCloudControls";
-import CloudScene from "./CloudScene";
 
-const Scene: FC = () => {
+const CloudScene: FC = () => {
   const { toneMappingMode } = useToneMappingControls({ exposure: 10 });
   const { longitude, latitude, height } = useLocationControls(
     {
@@ -102,16 +101,4 @@ const Scene: FC = () => {
   );
 };
 
-const page = () => {
-  return (
-    <div className="h-screen w-screen">
-      <Canvas gl={{ depth: false }} camera={{ near: 100, far: 4e5 }}>
-        <Stats />
-        <Sky />
-        <CloudScene />
-      </Canvas>
-    </div>
-  );
-};
-
-export default page;
+export default CloudScene;
